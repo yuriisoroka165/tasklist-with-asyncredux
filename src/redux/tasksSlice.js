@@ -1,45 +1,61 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const tasksInitialState = [
-    { id: 0, text: "Learn HTML and CSS", completed: true },
-    { id: 1, text: "Get good at JavaScript", completed: true },
-    { id: 2, text: "Master React", completed: false },
-    { id: 3, text: "Discover Redux", completed: false },
-    { id: 4, text: "Build amazing apps", completed: false },
-];
+import { fetchTasks, addTask, deleteTask, toggleCompleted } from "./operations";
+
+const tasksInitialState = {
+    items: [],
+    isLoading: false,
+    error: null,
+};
+
+const hadlePending = state => {
+    state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+};
 
 const tasksSlice = createSlice({
     name: "tasks",
     initialState: tasksInitialState,
-    reducers: {
-        addTask: {
-            reducer(state, action) {
-                state.push(action.payload);
-            },
-            prepare(text) {
-                return {
-                    payload: {
-                        text,
-                        id: nanoid(),
-                        completed: false,
-                    },
-                };
-            },
+    extraReducers: {
+        [fetchTasks.pending]: hadlePending,
+        [fetchTasks.fulfilled](state, action) {
+            state.isLoading = false;
+            state.error = null;
+            state.items = action.payload;
         },
-        deleteTask(state, action) {
-            const index = state.findIndex(task => task.id === action.payload);
-            state.splice(index, 1);
+        [fetchTasks.rejected]: handleRejected,
+        [addTask.pending]: hadlePending,
+        [addTask.fulfilled](state, action) {
+            state.isLoading = false;
+            state.error = null;
+            state.items.push(action.payload);
         },
-        toggleCompleted(state, action) {
-            for (const task of state) {
-                if (task.id === action.payload) {
-                    task.completed = !task.completed;
-                    break;
-                }
-            }
+        [addTask.rejected]: handleRejected,
+        [deleteTask.pending]: hadlePending,
+        [deleteTask.fulfilled](state, action) {
+            state.isLoading = false;
+            state.error = null;
+            const index = state.items.findIndex(
+                task => task.id === action.payload.id
+            );
+            state.items.splice(index, 1);
         },
+        [deleteTask.rejected]: handleRejected,
+        [toggleCompleted.pending]: hadlePending,
+        [toggleCompleted.fulfilled](state, action) {
+            state.isLoading = false;
+            state.error = null;
+            const index = state.items.findIndex(
+                task => task.id === action.payload.id
+            );
+            state.items.splice(index, 1, action.payload);
+        },
+        [toggleCompleted.rejected]: handleRejected,
     },
 });
 
-export const { addTask, deleteTask, toggleCompleted } = tasksSlice.actions;
 export const tasksReducer = tasksSlice.reducer;

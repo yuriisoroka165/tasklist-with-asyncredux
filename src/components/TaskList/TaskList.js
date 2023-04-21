@@ -1,6 +1,8 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { statusFilters } from "redux/constants";
+import { fetchTasks } from "redux/operations";
 import { getTasks, getStatusFilter } from "redux/selectors";
 import { Task } from "components/Task/Task";
 import css from "./TaskList.module.css";
@@ -17,12 +19,17 @@ const getVisibleTasks = (tasks, statusFilter) => {
 };
 
 export const TaskList = () => {
+    const dispatch = useDispatch();
     // масив завдань зі стану Redux
     const tasks = useSelector(getTasks);
     // значення фільтра зі стану Redux
     const statusFilter = useSelector(getStatusFilter);
     // масив завдань які потрібно показувати
     const visibleTasks = getVisibleTasks(tasks, statusFilter);
+
+    useEffect(() => {
+        dispatch(fetchTasks());
+    }, [dispatch]);
 
     return (
         <ul className={css.list}>
