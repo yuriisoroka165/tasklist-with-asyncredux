@@ -1,23 +1,11 @@
 import { useSelector } from "react-redux";
 
-import { getTasks } from "redux/selectors";
+import { selectTaskCount } from "redux/selectors";
 import css from "./TaskCounter.module.css";
 
 export const TaskCounter = () => {
     // масив завдань зі стану redux
-    const tasks = useSelector(getTasks);
-
-    const count = tasks.reduce(
-        (accumulator, task) => {
-            if (task.completed) {
-                accumulator.completed += 1;
-            } else {
-                accumulator.active += 1;
-            }
-            return accumulator;
-        },
-        { active: 0, completed: 0 }
-    );
+    const count = useSelector(selectTaskCount);
 
     return (
         <div>
