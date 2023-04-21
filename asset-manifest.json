@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tasklist-with-asyncredux/static/css/main.668be256.css",
-    "main.js": "/tasklist-with-asyncredux/static/js/main.da34a388.js",
+    "main.css": "/tasklist-with-asyncredux/static/css/main.bed5146c.css",
+    "main.js": "/tasklist-with-asyncredux/static/js/main.8d3232bc.js",
     "index.html": "/tasklist-with-asyncredux/index.html",
-    "main.668be256.css.map": "/tasklist-with-asyncredux/static/css/main.668be256.css.map",
-    "main.da34a388.js.map": "/tasklist-with-asyncredux/static/js/main.da34a388.js.map"
+    "main.bed5146c.css.map": "/tasklist-with-asyncredux/static/css/main.bed5146c.css.map",
+    "main.8d3232bc.js.map": "/tasklist-with-asyncredux/static/js/main.8d3232bc.js.map"
   },
   "entrypoints": [
-    "static/css/main.668be256.css",
-    "static/js/main.da34a388.js"
+    "static/css/main.bed5146c.css",
+    "static/js/main.8d3232bc.js"
   ]
 }
