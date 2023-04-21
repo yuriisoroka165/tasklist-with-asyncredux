@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/tasklist-with-asyncredux/static/css/main.bed5146c.css",
-    "main.js": "/tasklist-with-asyncredux/static/js/main.8d3232bc.js",
+    "main.js": "/tasklist-with-asyncredux/static/js/main.5b68f5b4.js",
     "index.html": "/tasklist-with-asyncredux/index.html",
     "main.bed5146c.css.map": "/tasklist-with-asyncredux/static/css/main.bed5146c.css.map",
-    "main.8d3232bc.js.map": "/tasklist-with-asyncredux/static/js/main.8d3232bc.js.map"
+    "main.5b68f5b4.js.map": "/tasklist-with-asyncredux/static/js/main.5b68f5b4.js.map"
   },
   "entrypoints": [
     "static/css/main.bed5146c.css",
-    "static/js/main.8d3232bc.js"
+    "static/js/main.5b68f5b4.js"
   ]
 }
